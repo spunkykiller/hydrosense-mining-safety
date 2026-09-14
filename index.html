@@ -25,6 +25,50 @@
   @keyframes hsPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.85); } }
   @keyframes hsScan { 0% { transform: translateY(-8%); opacity: 0; } 12% { opacity: .9; } 88% { opacity: .9; } 100% { transform: translateY(108%); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  /* ── Tablet ≤ 1024px ── */
+  @media (max-width: 1024px) {
+    [data-heatgrid] { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [data-heatgrid] > div { min-width: 620px; }
+    [data-heatgrid] + div { flex-wrap: wrap; }
+  }
+
+  /* ── Mobile ≤ 767px ── */
+  @media (max-width: 767px) {
+    /* Nav: hide text links, keep CTA */
+    header nav a:not([href="#demo"]) { display: none !important; }
+    header nav { gap: 0 !important; }
+
+    /* Hero: darken full-width for text legibility */
+    [data-hero-root] > div:first-of-type {
+      background: linear-gradient(180deg, #060607 0%, rgba(6,6,7,0.92) 30%, rgba(6,6,7,0.7) 60%, rgba(6,6,7,0.35) 100%) !important;
+    }
+
+    /* Heat grid: force horizontal scroll */
+    [data-heatgrid] { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+    [data-heatgrid] > div { min-width: 520px; }
+
+    /* Console roster rows: stack on mobile */
+    [data-hs-row] { gap: 10px !important; }
+    [data-hs-row] > div:first-child { flex: 1 1 100% !important; }
+
+    /* Sample report card: reduce padding */
+    #data [data-reveal] { padding: 24px 18px !important; }
+
+    /* Sticky CTA: compact on mobile */
+    [data-stickycta] > div { padding: 10px 16px !important; gap: 10px !important; }
+    [data-stickycta] > div > div:first-child > div:first-child { font-size: 13px !important; }
+    [data-stickycta] > div > div:first-child > div:last-child { font-size: 11.5px !important; }
+    [data-stickycta] a { padding: 10px 18px !important; font-size: 13px !important; }
+
+    /* Footer: stack columns */
+    footer > div:first-child > div { gap: 28px 16px !important; }
+    footer > div:first-child > div > div { flex-basis: 100% !important; min-width: 100% !important; }
+    footer > div:first-child > div > div:first-child { flex-basis: 100% !important; }
+
+    /* FAQ answer text: reduce right padding */
+    [data-screen-label="FAQ"] p { padding-right: 20px !important; }
+  }
 </style>
 </helmet>
 <div style="font-family: Geist, ui-sans-serif, 'Helvetica Neue', Arial, sans-serif; background: #060607; color: #FAFAFA; overflow-x: hidden;">
@@ -147,42 +191,46 @@
         <h2 style="font-size: clamp(33px, 4vw, 52px); font-weight: 500; line-height: 1.06; letter-spacing: -0.032em; margin: 0; max-width: 22ch; text-wrap: balance;"><span style="color: #FAFAFA;">Where The Heat Season</span> <span style="color: #8A8A96;">Runs Longest.</span></h2>
       </div>
       <div data-reveal="" data-reveal-delay="60" style="background: #0F0F12; border: 1px solid #1F1F23; border-radius: 24px; padding: clamp(26px, 3vw, 38px);">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding-bottom: 14px;">
-          <div style="flex: 1 1 150px; min-width: 0;"></div>
-          <div style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);">
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">APR</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">MAY</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">JUN</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">JUL</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">AUG</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">SEP</div>
-          <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">OCT</div>
-          </div>
-        </div>
-        <div data-heatgrid="" style="display: flex; flex-direction: column;">
-          <div data-heat="1,2,3,3,3,2,1" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Arizona copper belt · Sonoran</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
-          </div>
-          <div data-heat="0,2,3,3,3,2,1" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">New Mexico &amp; Texas potash basins</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
-          </div>
-          <div data-heat="0,1,2,3,3,2,0" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">California aggregate operations</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div></div>
-          </div>
-          <div data-heat="1,2,2,3,3,2,1" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Florida phosphate district</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
-          </div>
-          <div data-heat="0,1,3,3,3,1,0" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Nevada gold trend · Great Basin</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div></div>
-          </div>
-          <div data-heat="2,2,2,2,2,2,2" style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
-            <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Deep mines, rock heat year-round</div>
-            <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div></div>
+        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px;">
+          <div style="min-width: 540px;">
+            <div style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding-bottom: 14px;">
+              <div style="flex: 1 1 150px; min-width: 0;"></div>
+              <div style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);">
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">APR</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">MAY</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">JUN</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">JUL</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">AUG</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">SEP</div>
+              <div data-heatmonth="" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #8A8A96; text-align: center;">OCT</div>
+              </div>
+            </div>
+            <div data-heatgrid="" style="display: flex; flex-direction: column;">
+              <div data-heat="1,2,3,3,3,2,1" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Arizona copper belt · Sonoran</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
+              </div>
+              <div data-heat="0,2,3,3,3,2,1" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">New Mexico &amp; Texas potash basins</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
+              </div>
+              <div data-heat="0,1,2,3,3,2,0" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">California aggregate operations</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div></div>
+              </div>
+              <div data-heat="1,2,2,3,3,2,1" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Florida phosphate district</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div></div>
+              </div>
+              <div data-heat="0,1,3,3,3,1,0" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Nevada gold trend · Great Basin</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #F87171;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #0E7490;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #17171B;"></div></div>
+              </div>
+              <div data-heat="2,2,2,2,2,2,2" style="display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(6px, 0.8vw, 10px); padding: 9px 0;">
+                <div style="flex: 1 1 150px; min-width: 0; font-size: clamp(14.5px, 1.4vw, 15.5px); color: #E4E4E7; letter-spacing: -0.01em; padding-right: 12px;">Deep mines, rock heat year-round</div>
+                <div data-heatcells="" style="flex: 4 1 230px; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 0.8vw, 10px);"><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div><div data-heatcell="" style="height: clamp(22px, 2.4vw, 26px); border-radius: 6px; background: #FBBF24;"></div></div>
+              </div>
+            </div>
           </div>
         </div>
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 2vw, 26px); margin-top: 26px; padding-top: 22px; border-top: 1px solid #1B1B1F;">
@@ -523,14 +571,14 @@
             </div>
             <input type="email" value="{{ email }}" onChange="{{ setEmail }}" placeholder="Work email" required="required" style="width: 100%; padding: 15px 17px; border: 1px solid #2A2A30; border-radius: 12px; font-size: 16px; color: #FAFAFA; background: #0B0B0D; outline: none; transition: border-color .18s ease;" style-focus="border-color:#22D3EE" />
             <input type="text" value="{{ dept }}" onChange="{{ setDept }}" placeholder="Organization" required="required" style="width: 100%; padding: 15px 17px; border: 1px solid #2A2A30; border-radius: 12px; font-size: 16px; color: #FAFAFA; background: #0B0B0D; outline: none; transition: border-color .18s ease;" style-focus="border-color:#22D3EE" />
-            <button type="submit" style="font-size: 16.5px; font-weight: 500; color: #060607; background: #FAFAFA; border: none; padding: 17px 24px; border-radius: 100px; cursor: pointer; width: 100%; margin-top: 8px; letter-spacing: -0.01em; transition: background .2s ease;" style-hover="background:#22D3EE">Continue to booking</button>
+            <button type="submit" style="font-size: 16.5px; font-weight: 500; color: #060607; background: #FAFAFA; border: none; padding: 17px 24px; border-radius: 100px; cursor: pointer; width: 100%; margin-top: 8px; letter-spacing: -0.01em; transition: background .2s ease;" style-hover="background:#22D3EE">Continue to schedule a meeting</button>
           </form>
           </sc-if>
           <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
           <div style="display: flex; flex-direction: column; gap: 16px; text-align: center;">
             <h3 style="font-size: 25px; font-weight: 500; line-height: 1.2; letter-spacing: -0.033em; margin: 0; color: #FAFAFA;">Thanks, {{ first }}.</h3>
             <p style="font-size: 17px; line-height: 1.55; color: #B4B4BC; margin: 0;">Your details are saved. Last step: pick a time that suits you.</p>
-            <a href="Book a Meeting.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 16.5px; font-weight: 500; color: #060607; background: #FAFAFA; padding: 17px 24px; border-radius: 100px; margin-top: 6px; transition: background .2s ease;" style-hover="background:#22D3EE">Proceed to book the meeting</a>
+            <a href="book-a-meeting.html" style="display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 16.5px; font-weight: 500; color: #060607; background: #FAFAFA; padding: 17px 24px; border-radius: 100px; margin-top: 6px; transition: background .2s ease;" style-hover="background:#22D3EE">Proceed to schedule a meeting</a>
             <button type="button" onClick="{{ reset }}" style="font-size: 14.5px; font-weight: 400; color: #8A8A92; background: transparent; border: none; padding: 4px; cursor: pointer;" style-hover="color:#FAFAFA">Edit my details</button>
           </div>
           </sc-if>
@@ -578,9 +626,9 @@
         </div>
         <div style="flex: 1 1 116px; min-width: 0; display: flex; flex-direction: column; gap: 11px;">
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E5E66; margin-bottom: 3px;">Industries</div>
-          <a href="HydroSense for Firefighters.dc.html" style="font-size: 13.5px; line-height: 1.35; color: #8A8A92; transition: color .18s ease;" style-hover="color: #FAFAFA;">Fire departments</a>
+          <a href="https://hydrosense-firefighters.vercel.app" style="font-size: 13.5px; line-height: 1.35; color: #8A8A92; transition: color .18s ease;" style-hover="color: #FAFAFA;">Fire departments</a>
           <span style="font-size: 13.5px; line-height: 1.35; color: #FAFAFA;">Mining safety</span>
-          <a href="HydroSense for US Construction.dc.html" style="font-size: 13.5px; line-height: 1.35; color: #8A8A92; transition: color .18s ease;" style-hover="color: #FAFAFA;">Construction</a>
+          <a href="https://hydrosense-us-construction.vercel.app" style="font-size: 13.5px; line-height: 1.35; color: #8A8A92; transition: color .18s ease;" style-hover="color: #FAFAFA;">Construction</a>
         </div>
         <div style="flex: 1 1 116px; min-width: 0; display: flex; flex-direction: column; gap: 11px;">
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E5E66; margin-bottom: 3px;">Company</div>
