@@ -1,6 +1,6 @@
 {
   "industry": "mining",
-  "generatedAt": "2026-09-28T11:26:23.210Z",
+  "generatedAt": "2026-09-28T12:00:06.592Z",
   "images": [
     {
       "source": "assets/hero-mining-v2.jpg",
@@ -18,9 +18,9 @@
       "largestWebpBytes": 2514
     },
     {
-      "source": "assets/mark-eu-flag-sm.png",
-      "originalBytes": 188608,
-      "largestWebpBytes": 4454
+      "source": "assets/mark-almi-light.png",
+      "originalBytes": 27394,
+      "largestWebpBytes": 1844
     },
     {
       "source": "assets/mark-venture-cup-light.png",
@@ -28,9 +28,9 @@
       "largestWebpBytes": 3816
     },
     {
-      "source": "assets/mark-almi-light.png",
-      "originalBytes": 27394,
-      "largestWebpBytes": 1844
+      "source": "assets/mark-eu-flag-sm.png",
+      "originalBytes": 188608,
+      "largestWebpBytes": 4454
     },
     {
       "source": "assets/card-mining.jpg",
